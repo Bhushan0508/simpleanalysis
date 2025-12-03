@@ -12,8 +12,15 @@ services:
       MONGO_INITDB_DATABASE: simpleanalysis
     volumes:
       - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
     networks:
       - simpleanalysis-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
 
   # Redis Cache
   redis:
@@ -26,6 +33,11 @@ services:
       - redis_data:/data
     networks:
       - simpleanalysis-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # Backend API
   backend:
@@ -36,21 +48,24 @@ services:
     restart: unless-stopped
     ports:
       - "8000:8000"
-    environment:
-      - MONGODB_URL=mongodb://mongodb:27017
-      - MONGODB_DB_NAME=simpleanalysis
-      - REDIS_URL=redis://redis:6379/0
-      - SECRET_KEY=09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7
-      - DEBUG=True
-      - CORS_ORIGINS=http://localhost:3000,http://localhost:80
+    env_file:
+      - ./backend/.env.docker
     depends_on:
-      - mongodb
-      - redis
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     volumes:
       - ./backend/data/uploads:/app/data/uploads
       - ./backend/data/cache:/app/data/cache
     networks:
       - simpleanalysis-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   # Frontend
   frontend:
@@ -74,4 +89,5 @@ networks:
 
 volumes:
   mongodb_data:
+  mongodb_config:
   redis_data:
