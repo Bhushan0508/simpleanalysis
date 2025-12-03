@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:7.0
+    container_name: simpleanalysis-mongodb-dev
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: simpleanalysis
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - simpleanalysis-network
+
+  # Redis Cache
+  redis:
+    image: redis:7.2-alpine
+    container_name: simpleanalysis-redis-dev
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - simpleanalysis-network
+
+networks:
+  simpleanalysis-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+  redis_data:

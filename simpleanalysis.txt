@@ -1,0 +1,110 @@
+
+
+Please a website simpleanalysis.in 
+
+first page lets user create the watch list , user should be quickly able to add stock list in excel format.
+   - user should also have the facility to create stock list from indexes like nifty50,bank nifty and all sector indices
+   - data can be taken from yahoo finance
+   
+second user should be able to do stock analysis
+   - user should be add columns like 
+       PRICE ACTION 
+         LopaZopa
+         Trendlines
+         CIP (Change in polarity)
+         Fibnaci retracements
+         Fib extensions
+         Cluster
+         Gaps
+         Crossed 1.272 Bull trap
+         Reversed from bear trap
+         
+       REVERSAL PATTERN
+         Flags
+         Penants
+         Triangles
+         Rectangles
+         M Pattern
+         W Pattern
+         Triple Tops
+         Triple Bottoms
+         Head N shoulders
+         Reverse Head and Shoulders
+         Cups
+         
+       CANDLESTICK PATTERNS
+         Marubozu
+         Doji
+         Spinning tops
+         Hanging man
+         Hammer
+         Bearish bullish engulfing
+         Bearish bullish harami
+         Morning star
+         Evening star
+         Tweezer tops bottoms
+         
+       
+       INDICATOR ANALYSIS
+         SMA
+         Ichimoku
+         ADX 
+         RSI Cross 40
+         RSI Range Shift above 40
+         RSI Cross 60
+         RSI Range Shift above 60
+         GFS
+         Advanced GFS
+         RSI BULLISH Divergence
+         RSI PRD
+         MACD reversing at 1 percent
+         MACD Reversing at percent
+         MACD Crossed above 0%
+         
+       VOLATILITY
+         Bollinger bands
+         PCR (Put Call Ratio)
+         Stochastic
+         
+       TIME ANALYSIS
+         Sector Rotation
+         Important Dates
+         Sector Interdependence Nifty vs GOld
+         War vs crude oil
+         Crudeoil vs pidilite
+         Volatility
+         
+       NEWS ETC
+          Here user can paste some text or link for news
+          
+       Star Grading
+          This column contains the result of the stock 
+          User can select 1  items from PRICE ACTION options, REVERSAL pattern option  , CANDLESTICK PATTERNS etc 
+          then user grading should be 3. Each item selected will add grading by 1 marks
+          User should be able to assign 1 mark/weightage for the each option in  PRICE ACTION options, REVERSAL pattern option  , CANDLESTICK PATTERNS etc 
+          
+          
+third User should be able to trade analysis
+         User can upload the PDF print of his positions, or excel sheet of his positions from zerodha
+         He can note down the 
+                      entry rationale ,
+                      target,  
+                      exit rationale,
+                      reason for not entrering,
+                      TODAYS PRICE,
+                      todays pnl
+         
+fourth user should be able to analyze his positions as per sector rotation
+         Columns on this screen 
+              sector                     Shows the sector nam e
+              Sector index point -index value of the secotr
+              Date updated   
+              trend
+              cash	%
+              cc2	%
+              naked future	%
+
+
+User should be able to maintain the version of the excel file of updated
+
+User should be able to see various graphs and representations from the data he entered

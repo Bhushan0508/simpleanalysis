@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:7.0
+    container_name: simpleanalysis-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: simpleanalysis
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - simpleanalysis-network
+
+  # Redis Cache
+  redis:
+    image: redis:7.2-alpine
+    container_name: simpleanalysis-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - simpleanalysis-network
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: simpleanalysis-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017
+      - MONGODB_DB_NAME=simpleanalysis
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7
+      - DEBUG=True
+      - CORS_ORIGINS=http://localhost:3000,http://localhost:80
+    depends_on:
+      - mongodb
+      - redis
+    volumes:
+      - ./backend/data/uploads:/app/data/uploads
+      - ./backend/data/cache:/app/data/cache
+    networks:
+      - simpleanalysis-network
+
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: simpleanalysis-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    environment:
+      - VITE_API_URL=http://localhost:8000/api/v1
+    depends_on:
+      - backend
+    networks:
+      - simpleanalysis-network
+
+networks:
+  simpleanalysis-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+  redis_data:
