@@ -31,7 +31,7 @@ pdfplumber==0.11.0
 tabula-py==2.9.0
 
 # Caching
-redis==5.0.1
+redis[hiredis]==5.0.1
 # aioredis is deprecated, redis 5.x has async support built-in
 
 # HTTP Client

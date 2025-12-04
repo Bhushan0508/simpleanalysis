@@ -3,6 +3,8 @@ import { useAuthStore } from './store/authStore';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import Watchlists from './pages/Watchlists';
+import WatchlistDetail from './pages/WatchlistDetail';
 
 // Protected Route component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -54,6 +56,22 @@ function App() {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/watchlists"
+          element={
+            <ProtectedRoute>
+              <Watchlists />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/watchlists/:id"
+          element={
+            <ProtectedRoute>
+              <WatchlistDetail />
             </ProtectedRoute>
           }
         />

@@ -1,5 +1,5 @@
 import { useAuthStore } from '../store/authStore';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { authApi } from '../api/auth';
 
 export default function Dashboard() {
@@ -49,13 +49,13 @@ export default function Dashboard() {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="bg-blue-50 p-4 rounded-lg">
+              <Link to="/watchlists" className="bg-blue-50 p-4 rounded-lg hover:bg-blue-100 transition-colors">
                 <h3 className="text-lg font-semibold text-blue-900 mb-2">Watchlists</h3>
                 <p className="text-sm text-blue-700">
                   Create and manage your stock watchlists
                 </p>
-                <p className="text-xs text-blue-600 mt-2">Coming in Phase 2</p>
-              </div>
+                <p className="text-xs text-blue-600 mt-2 font-medium">View Watchlists →</p>
+              </Link>
 
               <div className="bg-green-50 p-4 rounded-lg">
                 <h3 className="text-lg font-semibold text-green-900 mb-2">Stock Analysis</h3>

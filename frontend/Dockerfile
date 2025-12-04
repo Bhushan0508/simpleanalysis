@@ -29,6 +29,6 @@ RUN chown -R nginx:nginx /usr/share/nginx/html && \
     chmod -R 755 /usr/share/nginx/html
 
 # Expose port
-EXPOSE 80
+EXPOSE 85
 
 CMD ["nginx", "-g", "daemon off;"]

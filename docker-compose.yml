@@ -47,7 +47,7 @@ services:
     container_name: simpleanalysis-backend
     restart: unless-stopped
     ports:
-      - "8005:8000"
+      - "8005:8005"
     env_file:
       - ./backend/.env.docker
     depends_on:
@@ -61,7 +61,7 @@ services:
     networks:
       - simpleanalysis-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8005/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -75,7 +75,7 @@ services:
     container_name: simpleanalysis-frontend
     restart: unless-stopped
     ports:
-      - "85:80"
+      - "85:85"
     environment:
       - VITE_API_URL=http://localhost:8005/api/v1
     depends_on:

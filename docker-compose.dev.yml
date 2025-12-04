@@ -7,7 +7,7 @@ services:
     container_name: simpleanalysis-mongodb-dev
     restart: unless-stopped
     ports:
-      - "27017:27017"
+      - "27022:27017"
     environment:
       MONGO_INITDB_DATABASE: simpleanalysis
     volumes:
@@ -21,7 +21,7 @@ services:
     container_name: simpleanalysis-redis-dev
     restart: unless-stopped
     ports:
-      - "6379:6379"
+      - "6384:6379"
     volumes:
       - redis_data:/data
     networks:

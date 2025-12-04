@@ -14,7 +14,7 @@ class Settings:
     APP_VERSION: str = os.getenv("APP_VERSION", "1.0.0")
     DEBUG: bool = os.getenv("DEBUG", "True").lower() in ("true", "1", "yes")
     HOST: str = os.getenv("HOST", "0.0.0.0")
-    PORT: int = int(os.getenv("PORT", "8000"))
+    PORT: int = int(os.getenv("PORT", "8005"))
 
     # Security
     SECRET_KEY: str = os.getenv("SECRET_KEY", "")
@@ -45,5 +45,5 @@ class Settings:
 settings = Settings()
 
 # Parse CORS origins manually from environment variable
-_cors_origins_str = os.getenv("CORS_ORIGINS_STR", "http://localhost:3000,http://localhost:5173")
+_cors_origins_str = os.getenv("CORS_ORIGINS_STR", "http://localhost:3000,http://localhost:5173,http://localhost:85,http://localhost:8005")
 CORS_ORIGINS: List[str] = [origin.strip() for origin in _cors_origins_str.split(',') if origin.strip()]
